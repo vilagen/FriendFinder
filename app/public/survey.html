@@ -28,7 +28,7 @@
 
         <h2>Your Name</h2>
 
-        <input type = "text" id = "yourName" class= "form-control" placeholder = "Your Name">
+        <input type = "text" id = "yourName" class= "form-control" placeholder = "Your Name" required>
         
         <br>
 
@@ -38,7 +38,7 @@
        
         <h3><strong>Question 1</strong></h3>
         <h4>You enjoy the outdoors.</h4>
-        <div class = "select1to5" id = "Q1">
+        <div class = "select1to5" id = "Q1" required>
 
             <div class = "form-check">
             <input class = "form-check-input" type = "radio" name = "question1" value = "1">
@@ -71,7 +71,7 @@
 
         <h3><strong>Question 2</strong></h3>
         <h4>You enjoy binge watching more than fraternizing.</h4>
-        <div class = "select1to5" id = "Q2">
+        <div class = "select1to5" id = "Q2" required>
 
             <div class = "form-check">
             <input class = "form-check-input" type = "radio" name = "question2" value = "1">
@@ -209,3 +209,23 @@
     
 </body>
 </html>
+
+<script type = "text/javascript">
+
+$(".submit").on("click", function(){
+    var newFriend = {
+        answer1: $("#Q1").val(),
+        answer2: $("#Q2").val(),
+        answer3: $("#Q2").val(),
+        answer4: $("#Q2").val(),
+        answer5: $("#Q2").val(),
+    };
+
+$.post("/api")
+
+console.log(newFriend)
+var currentURL = window.location.origin;
+$.post(currentURL + "/api/new", newFriend)
+})
+
+</script>
