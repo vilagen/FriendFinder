@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <script type="text/javascript" src="./lib/jquery-3.3.1.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://kit.fontawesome.com/e8880dcfac.js"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
@@ -28,7 +28,7 @@
 
         <h2>Your Name</h2>
 
-        <input type = "text" id = "yourName" class= "form-control" placeholder = "Your Name" required>
+        <input type = "text" id = "yourName" class= "form-control" placeholder = "Your Name">
         
         <br>
 
@@ -38,7 +38,7 @@
        
         <h3><strong>Question 1</strong></h3>
         <h4>You enjoy the outdoors.</h4>
-        <div class = "select1to5" id = "Q1" required>
+        <div class = "select1to5" id = "Q1">
 
             <div class = "form-check">
             <input class = "form-check-input" type = "radio" name = "question1" value = "1">
@@ -71,7 +71,7 @@
 
         <h3><strong>Question 2</strong></h3>
         <h4>You enjoy binge watching more than fraternizing.</h4>
-        <div class = "select1to5" id = "Q2" required>
+        <div class = "select1to5" id = "Q2">
 
             <div class = "form-check">
             <input class = "form-check-input" type = "radio" name = "question2" value = "1">
@@ -201,9 +201,8 @@
 
         <hr>
 
-        <div id = "submit">
-            <button type = "button" class="btn btn-lg btn-primary"><span class = "fa fa-poll-h"></span>  Submit  </button>
-        </div>
+        <button type = "button" class="btn btn-lg btn-primary" id = "submit"><span class = "fa fa-poll-h"></span>  Submit  </button>
+        
         
     </div>
     
@@ -212,20 +211,23 @@
 
 <script type = "text/javascript">
 
-$(".submit").on("click", function(){
+$("#submit").on("click", function(event){
+    event.preventDefault()
+
     var newFriend = {
-        answer1: $("#Q1").val(),
-        answer2: $("#Q2").val(),
-        answer3: $("#Q2").val(),
-        answer4: $("#Q2").val(),
-        answer5: $("#Q2").val(),
+        answer1: $("#Q1 input:radio:checked").val(),
+        answer2: $("#Q2 input:radio:checked").val(),
+        answer3: $("#Q3 input:radio:checked").val(),
+        answer4: $("#Q4 input:radio:checked").val(),
+        answer5: $("#Q5 input:radio:checked").val(),
     };
 
-$.post("/api")
+    console.log(newFriend)
+    alert("test")
+
+$.post("/api/friend", newFriend)
 
 console.log(newFriend)
-var currentURL = window.location.origin;
-$.post(currentURL + "/api/new", newFriend)
 })
 
 </script>
