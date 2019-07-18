@@ -210,23 +210,126 @@
 
 <script type = "text/javascript">
 
+// $("#submit").on("click", function(event){
+//     event.preventDefault()
+
+//     var newFriend = {
+//         name: $("#yourName").val().trim(),
+//         scores: [
+//         $("#Q1 input:radio:checked").val(),
+//         $("#Q2 input:radio:checked").val(),
+//         $("#Q3 input:radio:checked").val(),
+//         $("#Q4 input:radio:checked").val(),
+//         $("#Q5 input:radio:checked").val(),
+//         ]
+//     };
+//     alert("test");
+
+// $.post("/api/friends", newFriend)
+//     .then(function(data){
+//         console.log(data)
+//     });
+// console.log(newFriend)
+// });
+
 $("#submit").on("click", function(event){
     event.preventDefault()
 
     var newFriend = {
-        answer1: $("#Q1 input:radio:checked").val(),
-        answer2: $("#Q2 input:radio:checked").val(),
-        answer3: $("#Q3 input:radio:checked").val(),
-        answer4: $("#Q4 input:radio:checked").val(),
-        answer5: $("#Q5 input:radio:checked").val(),
+        name: $("#yourName").val().trim(),
+        scores: [
+        $("#Q1 input:radio:checked").val(),
+        $("#Q2 input:radio:checked").val(),
+        $("#Q3 input:radio:checked").val(),
+        $("#Q4 input:radio:checked").val(),
+        $("#Q5 input:radio:checked").val(),
+        ]
     };
-    alert("test")
+    alert("test");
 
-$.post("/api/friend", newFriend)
-    .then(function(data){
-        console.log(data)
-    })
+friendsArray.push(newFriend)
+
 console.log(newFriend)
-})
+
+findFriend(friendsArray, newFriend)
+});
+
+friendsArray = [
+    {
+        "name": "David Hart",
+        "scores": [
+        "1",
+        "2",
+        "5",
+        "4",
+        "3"
+        ]
+    },
+    {
+        "name": "Steven Bob",
+        "scores": [
+        "4",
+        "5",
+        "1",
+        "4",
+        "1"
+        ]
+    },
+    {
+        "name": "John Picord",
+        "scores": [
+        "1",
+        "1",
+        "5",
+        "5",
+        "5"
+        ]
+    }
+
+]
+
+friendsArray.forEach(function(element) {
+    console.log(element)
+
+});
+
+// var A=[1,2,3,4,5,6]
+// var B=[9,8,7,5,8,3]
+
+// var C = [];
+// for(let i = 0; i < A.length; i++) {
+//   C.push(Math.abs(A[i] - B[i]));
+// }
+
+// findfriend function must include:
+// get scores through a loop
+// compare scores from new score that is pushed
+// figure out lowest number
+// display name of that lowest number
+
+function findFriend(arr, user) {
+    var friendScore = []
+    var total = []
+    for(var i = 0; i < arr.length; i++){
+        scores = arr[i].scores
+        userScores = user.scores
+        console.log(scores)
+        console.log(user.name)
+        console.log(userScores)
+        for( var j = 0; j < scores.length; j++) {
+            total.push(parseInt(Math.abs(userScores[j] - scores[j])))
+        }
+        let sum = total.reduce((acc, val) => {
+            return acc + val
+        });
+        console.log(sum)
+        friendScore.push(sum)
+        var total = []
+    }
+    console.log(friendScore)
+}
+
+
+
 
 </script>
