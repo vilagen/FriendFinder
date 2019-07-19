@@ -29,6 +29,10 @@
 
         <input type = "text" id = "yourName" class= "form-control" placeholder = "Your Name">
         
+        <h2>Picture Link</h2>
+
+        <input type = "text" id = "photoLink" class= "form-control" placeholder = "Link to Your Photo">
+
         <br>
 
         <h4>Choose how much you agree with the following statements</h4>
@@ -509,19 +513,21 @@ function tallyScores(arr, user) {
 }
 
 function friendFinder(arr){
-    var bestMatch = arr[0][0]
+    var bestMatch = arr[0]
     console.log(arr)
     console.log(bestMatch)
-    // console.log(bestMatch[0].name)
-    // console.log(bestMatch[0].score)
+    console.log(bestMatch.name)
+    console.log(bestMatch.score)
     for(var i = 0; i < arr.length; i++){
-
-        if(arr[i][0].score < bestMatch) {
-            bestMatch = arr[i][0]
+        console.log(arr[i])
+        if(arr[i].score < bestMatch.score) {
+            bestMatch = arr[i]
             console.log("From if statement: " + bestMatch)
         }
     }
     console.log(bestMatch)
+    console.log(bestMatch.name)
+    return bestMatch.name
     // return bestMatch.name
 }
 
