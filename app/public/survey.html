@@ -416,7 +416,7 @@ friendsArray.push(newFriend)
 
 console.log(newFriend)
 
-findFriend(friendsArray, newFriend)
+tallyScores(friendsArray, newFriend)
 });
 
 friendsArray = [
@@ -468,9 +468,10 @@ friendsArray = [
 
 ]
 
+
 friendsArray.forEach(function(element) {
     console.log(element)
-
+    console.log(element.name)
 });
 
 // var A=[1,2,3,4,5,6]
@@ -487,7 +488,7 @@ friendsArray.forEach(function(element) {
 // figure out lowest number
 // display name of that lowest number
 
-function findFriend(arr, user) {
+function tallyScores(arr, user) {
     var friendScore = []
     var total = []
     for(var i = 0; i < arr.length; i++){
@@ -499,13 +500,29 @@ function findFriend(arr, user) {
         let sum = total.reduce((acc, val) => {
             return acc + val
         });
-        friendScore.push([{name: arr[i].name, score: sum}])
+        friendScore.push({name: arr[i].name, score: sum})
         var total = []
     }
     friendScore.pop()
-    console.log(friendScore)
-
+    friendFinder(friendScore)
+    
 }
 
+function friendFinder(arr){
+    var bestMatch = arr[0][0]
+    console.log(arr)
+    console.log(bestMatch)
+    // console.log(bestMatch[0].name)
+    // console.log(bestMatch[0].score)
+    for(var i = 0; i < arr.length; i++){
+
+        if(arr[i][0].score < bestMatch) {
+            bestMatch = arr[i][0]
+            console.log("From if statement: " + bestMatch)
+        }
+    }
+    console.log(bestMatch)
+    // return bestMatch.name
+}
 
 </script>
