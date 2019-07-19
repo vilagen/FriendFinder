@@ -499,11 +499,12 @@ function findFriend(arr, user) {
         let sum = total.reduce((acc, val) => {
             return acc + val
         });
-        friendScore.push([arr[i].name, sum])
+        friendScore.push([{name: arr[i].name, score: sum}])
         var total = []
     }
     friendScore.pop()
     console.log(friendScore)
+
 }
 
 

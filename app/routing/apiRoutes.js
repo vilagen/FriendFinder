@@ -6,6 +6,10 @@ module.exports = function(app) {
     })
 
     app.post("/api/friends", function(req, res) {
+
+        // input logic 
+        // let friend = req.body
+
         friends.push(req.body)
         res.json(true)
     })
