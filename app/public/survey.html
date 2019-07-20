@@ -25,6 +25,7 @@
 
         <hr>
 
+        
         <h2>Your Name</h2>
 
         <input type = "text" id = "yourName" class= "form-control" placeholder = "Your Name">
@@ -41,7 +42,7 @@
        
         <h3><strong>Question 1</strong></h3>
         <h4>You enjoy the outdoors.</h4>
-        <div class = "select1to5" id = "Q1">
+        <div class = "select1to10" id = "Q1">
 
             <div class = "form-check">
             <input class = "form-check-input" type = "radio" name = "question1" value = "1">
@@ -74,7 +75,7 @@
 
         <h3><strong>Question 2</strong></h3>
         <h4>You enjoy binge watching more than fraternizing.</h4>
-        <div class = "select1to5" id = "Q2">
+        <div class = "select1to10" id = "Q2">
 
             <div class = "form-check">
             <input class = "form-check-input" type = "radio" name = "question2" value = "1">
@@ -107,7 +108,7 @@
 
         <h3><strong>Question 3</strong></h3>
         <h4>Politics are important to you.</h4>
-        <div class = "select1to5" id = "Q3">
+        <div class = "select1to10" id = "Q3">
 
             <div class = "form-check">
             <input class = "form-check-input" type = "radio" name = "question3" value = "1">
@@ -140,7 +141,7 @@
 
         <h3><strong>Question 4</strong></h3>
         <h4>You enjoy reading.</h4>
-        <div class = "select1to5" id = "Q4">
+        <div class = "select1to10" id = "Q4">
 
             <div class = "form-check">
             <input class = "form-check-input" type = "radio" name = "question4" value = "1">
@@ -173,7 +174,7 @@
 
         <h3><strong>Question 5</strong></h3>
         <h4>You enjoy a respectful debate.</h4>
-        <div class = "select1to5" id = "Q5">
+        <div class = "select1to10" id = "Q5">
 
             <div class = "form-check">
             <input class = "form-check-input" type = "radio" name = "question5" value = "1">
@@ -204,7 +205,7 @@
 
         <h3><strong>Question 6</strong></h3>
         <h4>You are more of a night person than day.</h4>
-        <div class = "select1to5" id = "Q6">
+        <div class = "select1to10" id = "Q6">
 
             <div class = "form-check">
             <input class = "form-check-input" type = "radio" name = "question6" value = "1">
@@ -235,7 +236,7 @@
 
         <h3><strong>Question 7</strong></h3>
         <h4>You are materialistic.</h4>
-        <div class = "select1to5" id = "Q7">
+        <div class = "select1to10" id = "Q7">
 
             <div class = "form-check">
             <input class = "form-check-input" type = "radio" name = "question7" value = "1">
@@ -266,7 +267,7 @@
 
         <h3><strong>Question 8</strong></h3>
         <h4>You love to travel.</h4>
-        <div class = "select1to5" id = "Q8">
+        <div class = "select1to10" id = "Q8">
 
             <div class = "form-check">
             <input class = "form-check-input" type = "radio" name = "question8" value = "1">
@@ -297,7 +298,7 @@
 
         <h3><strong>Question 9</strong></h3>
         <h4>You are a goal-oriented person.</h4>
-        <div class = "select1to5" id = "Q9">
+        <div class = "select1to10" id = "Q9">
 
             <div class = "form-check">
             <input class = "form-check-input" type = "radio" name = "question9" value = "1">
@@ -328,7 +329,7 @@
 
         <h3><strong>Question 10</strong></h3>
         <h4> You generally rely more on experience than imagination.</h4>
-        <div class = "select1to5" id = "Q10">
+        <div class = "select1to10" id = "Q10">
 
             <div class = "form-check">
             <input class = "form-check-input" type = "radio" name = "question10" value = "1">
@@ -384,8 +385,18 @@
 <script type = "text/javascript">
 
 $("#submit").on("click", function(event){
-    event.preventDefault()
 
+    event.preventDefault()
+    
+    var selected = null
+
+    if($("#yourName").val() === "" || $("#photoLink").val() === "") {
+        alert("Please fill out your name and link for photo.")
+    } else 
+    if($("#Q1") === "" || $("#Q2") === "" || $("#Q3") === "" || $("#Q4") === "" || $("#Q5") === "" ||
+        $("#Q6") === "" || $("#Q7") === "" || $("#Q8") === "" || $("#Q9") === "" || $("#Q10") === "") {
+        alert("Please answer all the questions.")
+    } else {
     var newFriend = {
         name: $("#yourName").val().trim(),
         link: $("#photoLink").val().trim(),
@@ -403,12 +414,23 @@ $("#submit").on("click", function(event){
        ]
     };
 
-$.post("/api/friends", newFriend)
-    .then(function(data){
-    });
+    $.post("/api/friends", newFriend, function(data){
+        });
 
-    $("#bestFriendModal").modal("show")
-});
+        getFriend()
+        // $("#bestFriendModal").modal("show")
+    };
+})
+
+
+    function getFriend() {
+    $.ajax({ url: "/api/friends", method: "GET" })
+    .then(function(friends) {
+        console.log(friends)
+        })
+    }
+
+</script>
 
 // $("#submit").on("click", function(event){
 //     event.preventDefault()
@@ -479,4 +501,3 @@ $.post("/api/friends", newFriend)
 //     })
 // }
 
-</script>
