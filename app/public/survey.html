@@ -418,7 +418,8 @@ $("#submit").on("click", function(event){
     };
 
     $.post("/api/friends", newFriend, function(data){
-        });
+        
+    });
         
         $("#bestFriendModal").modal("show")
     };
@@ -429,6 +430,8 @@ $("#submit").on("click", function(event){
     $.ajax({ url: "/api/friends", method: "GET" })
     .then(function(friends) {
         console.log(friends)
+    })
+}
         // var friendScore = []
         // var total = []
         // for(var i = 0; i < friends.length; i++){
@@ -463,7 +466,7 @@ $("#submit").on("click", function(event){
         //     })
         //     console.log(bestMatch)
         // } 
-    }
+    // }
 
     // function tallyScores(arr, user) {
     //         var friendScore = []
