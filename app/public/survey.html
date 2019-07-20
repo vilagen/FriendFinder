@@ -361,7 +361,21 @@
 
         <button type = "button" class="btn btn-lg btn-primary" id = "submit"><span class = "fa fa-poll-h"></span>  Submit  </button>
         
-        
+        <!-- Model -->
+        <div class = "modal fade" id = "bestFriendModal" aria-labelledby="viewResultModel">
+            <div class = "modal-dialog" role = "document">
+                <div class = "modal-content">
+                    <div class = "modal-header">
+                        <h3 class = "model-title"> Your Match! </h3>
+                    </div>
+                    <div class = "modal-body">
+                        <h4 id = "matchedFriend"></h4>
+                        <a id = "matchedLink"><h4>Click for Picture</h4></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </div>
     
 </body>
@@ -374,6 +388,7 @@
 
 //     var newFriend = {
 //         name: $("#yourName").val().trim(),
+        // link: $("#photoLink").val().trim(),
 //         scores: [
 //         $("#Q1 input:radio:checked").val(),
 //         $("#Q2 input:radio:checked").val(),
@@ -401,6 +416,7 @@ $("#submit").on("click", function(event){
 
     var newFriend = {
         name: $("#yourName").val().trim(),
+        link: $("#photoLink").val().trim(),
         scores: [
         $("#Q1 input:radio:checked").val(),
         $("#Q2 input:radio:checked").val(),
@@ -416,16 +432,19 @@ $("#submit").on("click", function(event){
     };
     alert("test");
 
+
 friendsArray.push(newFriend)
 
 console.log(newFriend)
 
 tallyScores(friendsArray, newFriend)
+$("#bestFriendModal").modal("show")
 });
 
 friendsArray = [
     {
         "name": "David Hart",
+        "link": "https://vilagen.github.io/Responsive-Portfolio/",
         "scores": [
         "1",
         "2",
@@ -440,7 +459,8 @@ friendsArray = [
         ]
     },
     {
-        "name": "Steven Bob",
+        "name": "Megan Markle",
+        "link": "https://www.hellomagazine.com/imagenes/royalty/2017120144448/megan-markle-first-engagement-soon/0-225-150/meghan-markle-t.jpg",
         "scores": [
         "4",
         "5",
@@ -455,7 +475,8 @@ friendsArray = [
         ]
     },
     {
-        "name": "John Picord",
+        "name": "Jean-Luc Picard",
+        "link": "https://cdn1-www.comingsoon.net/assets/uploads/2018/12/Picard.jpg",
         "scores": [
         "1",
         "1",
@@ -504,7 +525,7 @@ function tallyScores(arr, user) {
         let sum = total.reduce((acc, val) => {
             return acc + val
         });
-        friendScore.push({name: arr[i].name, score: sum})
+        friendScore.push({name: arr[i].name, link: arr[i].link, score: sum})
         var total = []
     }
     friendScore.pop()
@@ -526,8 +547,15 @@ function friendFinder(arr){
         }
     }
     console.log(bestMatch)
-    console.log(bestMatch.name)
-    return bestMatch.name
+    console.log(bestMatch.name + ", " + bestMatch.link)
+    $("#matchedFriend").text("Name: " + bestMatch.name)
+    $("#matchedLink").attr("href", bestMatch.link)
+    $("#matchedLink").on("click", function(event){
+        event.preventDefault();
+        window.open(bestMatch.link)
+    })
+
+    return bestMatch.name + "\n" + bestMatch.link
     // return bestMatch.name
 }
 
