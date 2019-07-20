@@ -383,34 +383,6 @@
 
 <script type = "text/javascript">
 
-// $("#submit").on("click", function(event){
-//     event.preventDefault()
-
-//     var newFriend = {
-//         name: $("#yourName").val().trim(),
-        // link: $("#photoLink").val().trim(),
-//         scores: [
-//         $("#Q1 input:radio:checked").val(),
-//         $("#Q2 input:radio:checked").val(),
-//         $("#Q3 input:radio:checked").val(),
-//         $("#Q4 input:radio:checked").val(),
-//         $("#Q5 input:radio:checked").val(),
-//         $("#Q6 input:radio:checked").val(),
-//         $("#Q7 input:radio:checked").val(),
-//         $("#Q8 input:radio:checked").val(),
-//         $("#Q9 input:radio:checked").val(),
-//         $("#Q10 input:radio:checked").val()
-//        ]
-//     };
-//     alert("test");
-
-// $.post("/api/friends", newFriend)
-//     .then(function(data){
-//         console.log(data)
-//     });
-// console.log(newFriend)
-// });
-
 $("#submit").on("click", function(event){
     event.preventDefault()
 
@@ -428,135 +400,83 @@ $("#submit").on("click", function(event){
         $("#Q8 input:radio:checked").val(),
         $("#Q9 input:radio:checked").val(),
         $("#Q10 input:radio:checked").val()
-        ]
+       ]
     };
-    alert("test");
 
+$.post("/api/friends", newFriend)
+    .then(function(data){
+    });
 
-friendsArray.push(newFriend)
-
-console.log(newFriend)
-
-tallyScores(friendsArray, newFriend)
-$("#bestFriendModal").modal("show")
+    $("#bestFriendModal").modal("show")
 });
 
-friendsArray = [
-    {
-        "name": "David Hart",
-        "link": "https://vilagen.github.io/Responsive-Portfolio/",
-        "scores": [
-        "1",
-        "2",
-        "5",
-        "4",
-        "3",
-        "4",
-        "2",
-        "5",
-        "1",
-        "2"
-        ]
-    },
-    {
-        "name": "Megan Markle",
-        "link": "https://www.hellomagazine.com/imagenes/royalty/2017120144448/megan-markle-first-engagement-soon/0-225-150/meghan-markle-t.jpg",
-        "scores": [
-        "4",
-        "5",
-        "1",
-        "4",
-        "1",
-        "1",
-        "4",
-        "4",
-        "3",
-        "1"
-        ]
-    },
-    {
-        "name": "Jean-Luc Picard",
-        "link": "https://cdn1-www.comingsoon.net/assets/uploads/2018/12/Picard.jpg",
-        "scores": [
-        "1",
-        "1",
-        "5",
-        "5",
-        "5",
-        "3",
-        "2",
-        "4",
-        "4",
-        "1"
-        ]
-    }
+// $("#submit").on("click", function(event){
+//     event.preventDefault()
 
-]
+//     var newFriend = {
+//         name: $("#yourName").val().trim(),
+//         link: $("#photoLink").val().trim(),
+//         scores: [
+//         $("#Q1 input:radio:checked").val(),
+//         $("#Q2 input:radio:checked").val(),
+//         $("#Q3 input:radio:checked").val(),
+//         $("#Q4 input:radio:checked").val(),
+//         $("#Q5 input:radio:checked").val(),
+//         $("#Q6 input:radio:checked").val(),
+//         $("#Q7 input:radio:checked").val(),
+//         $("#Q8 input:radio:checked").val(),
+//         $("#Q9 input:radio:checked").val(),
+//         $("#Q10 input:radio:checked").val()
+//         ]
+//     };
 
 
-friendsArray.forEach(function(element) {
-    console.log(element)
-    console.log(element.name)
-});
+// friendsArray.push(newFriend)
 
-// var A=[1,2,3,4,5,6]
-// var B=[9,8,7,5,8,3]
+// tallyScores(friendsArray, newFriend)
+// $("#bestFriendModal").modal("show")
+// });
 
-// var C = [];
-// for(let i = 0; i < A.length; i++) {
-//   C.push(Math.abs(A[i] - B[i]));
+
+
+// friendsArray.forEach(function(element) {
+
+// });
+
+
+// function tallyScores(arr, user) {
+//     var friendScore = []
+//     var total = []
+//     for(var i = 0; i < arr.length; i++){
+//         scores = arr[i].scores
+//         userScores = user.scores
+//         for( var j = 0; j < scores.length; j++) {
+//             total.push(parseInt(Math.abs(userScores[j] - scores[j])))
+//         }
+//         let sum = total.reduce((acc, val) => {
+//             return acc + val
+//         });
+//         friendScore.push({name: arr[i].name, link: arr[i].link, score: sum})
+//         var total = []
+//     }
+//     friendScore.pop()
+//     friendFinder(friendScore)
+    
 // }
 
-// findfriend function must include:
-// get scores through a loop
-// compare scores from new score that is pushed
-// figure out lowest number
-// display name of that lowest number
-
-function tallyScores(arr, user) {
-    var friendScore = []
-    var total = []
-    for(var i = 0; i < arr.length; i++){
-        scores = arr[i].scores
-        userScores = user.scores
-        for( var j = 0; j < scores.length; j++) {
-            total.push(parseInt(Math.abs(userScores[j] - scores[j])))
-        }
-        let sum = total.reduce((acc, val) => {
-            return acc + val
-        });
-        friendScore.push({name: arr[i].name, link: arr[i].link, score: sum})
-        var total = []
-    }
-    friendScore.pop()
-    friendFinder(friendScore)
-    
-}
-
-function friendFinder(arr){
-    var bestMatch = arr[0]
-    console.log(arr)
-    console.log(bestMatch)
-    console.log(bestMatch.name)
-    console.log(bestMatch.score)
-    for(var i = 0; i < arr.length; i++){
-        console.log(arr[i])
-        if(arr[i].score < bestMatch.score) {
-            bestMatch = arr[i]
-            console.log("From if statement: " + bestMatch)
-        }
-    }
-    console.log(bestMatch)
-    console.log(bestMatch.name + ", " + bestMatch.link)
-    $("#matchedFriend").text("Name: " + bestMatch.name)
-    $("#matchedLink").attr("href", bestMatch.link)
-    $("#matchedLink").on("click", function(event){
-        event.preventDefault();
-        window.open(bestMatch.link)
-    })
-
-    return bestMatch.name + "\n" + bestMatch.link
-    // return bestMatch.name
-}
+// function friendFinder(arr){
+//     var bestMatch = arr[0]
+//     for(var i = 0; i < arr.length; i++){
+//         if(arr[i].score < bestMatch.score) {
+//             bestMatch = arr[i]
+//         }
+//     }
+//     $("#matchedFriend").text("Name: " + bestMatch.name)
+//     $("#matchedLink").attr("href", bestMatch.link)
+//     $("#matchedLink").on("click", function(event){
+//         event.preventDefault();
+//         window.open(bestMatch.link)
+//     })
+// }
 
 </script>
