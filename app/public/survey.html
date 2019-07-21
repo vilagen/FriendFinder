@@ -384,7 +384,7 @@
 
 <script type = "text/javascript">
 
-getFriend()
+
 
 $("#submit").on("click", function(event){
 
@@ -420,53 +420,69 @@ $("#submit").on("click", function(event){
     $.post("/api/friends", newFriend, function(data){
         
     });
-        
+
+    $.get('/api/match/:id', bestMatch, function(data) {
+        ("#matchedFriend").text("Name: " + bestMatch.name)
+        $("#matchedLink").attr("href", bestMatch.link)
+        $("#matchedLink").on("click", function(event){
+        event.preventDefault();
+        window.open(bestMatch.link)
+        })
+    })
+
+
         $("#bestFriendModal").modal("show")
     };
 })
 
+//     function getFriend() {
+//     $.ajax({ url: "/api/friends", method: "GET" })
+//     .then(function(friends) {
+//         console.log(friends)
+//     })
+// }
 
-    function getFriend() {
-    $.ajax({ url: "/api/friends", method: "GET" })
-    .then(function(friends) {
-        console.log(friends)
-    })
-}
-        // var friendScore = []
-        // var total = []
-        // for(var i = 0; i < friends.length; i++){
-        //     console.log(friends)
-        //     scores = friends[i].scores
-        //     userScores = newFriend.scores
-        //     for( var j = 0; j < scores.length; j++) {
-        //         total.push(parseInt(Math.abs(userScores[j] - scores[j])))
-        //     }
-        //     let sum = total.reduce((acc, val) => {
-        //         return acc + val
-        //     });
-        //     friendScore.push({name: friends[i].name, link: friends[i].link, score: sum})
-        //     var total = []
-        // }
-        // friendScore.pop()
-        // friendFinder(friendScore)
-        // })
+// function getMatch() {
+//     $.ajax({ url: "/api/match/" + "1", method: "GET" })
+//     .then(function(data) {
+//         console.log(data)
+//     })
+// }
+//         var friendScore = []
+//         var total = []
+//         for(var i = 0; i < friends.length; i++){
+//             console.log(friends)
+//             scores = friends[i].scores
+//             userScores = newFriend.scores
+//             for( var j = 0; j < scores.length; j++) {
+//                 total.push(parseInt(Math.abs(userScores[j] - scores[j])))
+//             }
+//             let sum = total.reduce((acc, val) => {
+//                 return acc + val
+//             });
+//             friendScore.push({name: friends[i].name, link: friends[i].link, score: sum})
+//             var total = []
+//         }
+//         friendScore.pop()
+//         friendFinder(friendScore)
+//         })
 
-        // function friendFinder(arr){
-        //     var bestMatch = arr[0]
-        //     for(var i = 0; i < arr.length; i++){
-        //         if(arr[i].score < bestMatch.score) {
-        //             bestMatch = arr[i]
-        //         }
-        //     }
-        //     $("#matchedFriend").text("Name: " + bestMatch.name)
-        //     $("#matchedLink").attr("href", bestMatch.link)
-        //     $("#matchedLink").on("click", function(event){
-        //         event.preventDefault();
-        //         window.open(bestMatch.link)
-        //     })
-        //     console.log(bestMatch)
-        // } 
-    // }
+//         function friendFinder(arr){
+//             var bestMatch = arr[0]
+//             for(var i = 0; i < arr.length; i++){
+//                 if(arr[i].score < bestMatch.score) {
+//                     bestMatch = arr[i]
+//                 }
+//             }
+//             $("#matchedFriend").text("Name: " + bestMatch.name)
+//             $("#matchedLink").attr("href", bestMatch.link)
+//             $("#matchedLink").on("click", function(event){
+//                 event.preventDefault();
+//                 window.open(bestMatch.link)
+//             })
+//             console.log(bestMatch)
+//         } 
+//     }
 
     // function tallyScores(arr, user) {
     //         var friendScore = []
@@ -495,12 +511,6 @@ $("#submit").on("click", function(event){
     //                 bestMatch = arr[i]
     //             }
     //         }
-    //         $("#matchedFriend").text("Name: " + bestMatch.name)
-    //         $("#matchedLink").attr("href", bestMatch.link)
-    //         $("#matchedLink").on("click", function(event){
-    //             event.preventDefault();
-    //             window.open(bestMatch.link)
-    //         })
     //     }     
 
 </script>

@@ -5,23 +5,36 @@ module.exports = function(app) {
         res.json(friends)
     })
     
+    // calling only one specific api result for the best
     app.get('/api/match/:id', function(req, res) {
        const id = req.params.id //0
+       console.log(id)
        const user = friends[id]; // David ...
+       console.log("friends: " + user)
+    //    const user = friends[id]; // David ...
 
        const friendScore = [];
        
-       // make sure user isn't included in score comparison 
-       const otherFriends = friends.filter((friend, id) => id !== user.id);
+    //    make sure user isn't included in score comparison 
+    //    const otherFriends = friends.filter((friends, id) => id !== user.id);
+    //    const otherFriends = friends.filter(function(friend, id) {
+    //    id !== user.id
+    // })
+    //    const otherFriends = friends.filter(friend =>friend.id);
+
+        const otherFriends = friends.filter(friend=> friend[id] !== id)
+        console.log("This is for otherfriends " + otherFriends)
 
         // loop over friends
-        for(var i = 0; i < otherFriends.length; i++){
+        for(let i = 0; i < otherFriends.length; i++){
             const scores = otherFriends[i].scores
             const userScores = user.scores
 
             const differeneFromUser = scores.reduce(function(difference, score, index) {
+                console.log("differenceFromUser: " + differenceFromUser)
                 // calculate the delta between user score and friend score
                 const currentScoreDifference = (parseInt(Math.abs(userScores[index] - score)));
+                console.log("currentScoredifference: " + currentScoreDifference)
                 // add to total
                 return difference +  currentScoreDifference;
             }, 0);
@@ -42,33 +55,17 @@ module.exports = function(app) {
         }
 
       res.json(bestMatch);
+      console.log("This is on server bestMatch " + bestMatch)
+      
     });
 
     app.post("/api/friends", function(req, res) {
-        // input logic 
         const  user = req.body
         friends.push(user);
 
+        // when getting a response, make sure not to include current user
         res.json({
             id: friends.length - 1
         });
     })
-
-    
-    var friendScore = []
-    
-    friendFinder(friendScore)
-
-        
-            $("#matchedFriend").text("Name: " + bestMatch.name)
-            $("#matchedLink").attr("href", bestMatch.link)
-            $("#matchedLink").on("click", function(event){
-                event.preventDefault();
-                window.open(bestMatch.link)
-            })  
-        friends.push(req.body)
-        friends.push(bestName)
-        friends.push(bestLink)
-        res.json(true)       
-    }
 }
