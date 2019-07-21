@@ -8,6 +8,10 @@ inputs, and then will find which person has the lowest score compared to what th
 
 When working, when the user hits submit, a modal will appear showing the name of the person with the best match and a link they provided with their photo.
 
+When ready, this is where the website is:
+
+https://guarded-wildwood-51320.herokuapp.com/
+
 Here were the instructions for the assignment:
 
 # Overview
