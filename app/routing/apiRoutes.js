@@ -5,6 +5,14 @@ module.exports = function(app) {
         res.json(friends)
     })
     
+    // This page is a mess, so here is what I plan to do:
+
+    // use code I had on front end and implement on backend since it did work
+        // make a variable like friend = req.body, which hopefully will contain user's information
+        // user that, along with friends and looping to use the code already made under this post
+        // use a post to push bestMatch to friends
+        // respond with bestMatch
+
     // calling only one specific api result for the best
     app.get('/api/match/:id', function(req, res) {
        const id = req.params.id //0
