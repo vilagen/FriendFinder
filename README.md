@@ -2,15 +2,13 @@
 
 Thank you for visiting the Friend's Finder page. The goal of this excercise is to create a small, yet full 
 stack website from backend to frontend. The Friend's Finder page is like a dating site, except it is just 
-finding a friend that is most compatible. At this time, the page isn't fully running as I am still working
-on the logic between the front and back end. But when completed, the site will tally up scores that the user
-inputs, and then will find which person has the lowest score compared to what the user put in. The person with the lowest score means that they have the least amount of difference between them and the user. 
+finding a friend that is most compatible. When the survey is completeed, the site will tally up scores that the user
+inputs, and then will find which person has the lowest score compared to what the user put in. The person with the lowest score means that they have the least amount of difference between them and the user. There is a link that is provided as well for a photo. May try to go back to have it display a photo when someone submits a link, but when the link is pressed it will open a new window with a photo.
 
-When working, when the user hits submit, a modal will appear showing the name of the person with the best match and a link they provided with their photo.
+# Link to the site:
 
-When ready, this is where the website is:
+## https://guarded-wildwood-51320.herokuapp.com/
 
-https://guarded-wildwood-51320.herokuapp.com/
 
 Here were the instructions for the assignment:
 
